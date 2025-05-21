@@ -11,5 +11,6 @@ namespace VitaGelata.Utils
     {
         public static List<Sabor> Sabores { get; set; } = new List<Sabor>();
         public static List<Insumo> Insumos { get; set; } = new List<Insumo>();
+        public static List<Producao> Producoes { get; set; } = new List<Producao>();
     }
 }

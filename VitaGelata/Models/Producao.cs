@@ -10,11 +10,9 @@ namespace VitaGelata.Models
 {
     public class Producao
     {
-        public int Id { get; set; }
-        public Sabor SaborProduzido { get; set; }
-        public decimal Quantidade { get; set; }
-        public DateTime DataProducao { get; set; }
-        public List<InsumoConsumido> InsumosUtilizados { get; set; }
+        public string NomeSabor { get; set; }
+        public int Quantidade { get; set; }
+        public DateTime Data { get; set; }
     }
 
     public class InsumoConsumido

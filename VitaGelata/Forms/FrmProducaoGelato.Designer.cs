@@ -31,14 +31,15 @@
             this.cmbSabor = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtQuantidade = new System.Windows.Forms.TextBox();
-            this.dtpData = new System.Windows.Forms.DateTimePicker();
-            this.dgvInsumosUsados = new System.Windows.Forms.DataGridView();
+            this.dtpDataProducao = new System.Windows.Forms.DateTimePicker();
+            this.dgvProducoes = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInsumosUsados)).BeginInit();
+            this.lblSemProducoes = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducoes)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbSabor
@@ -67,21 +68,22 @@
             this.txtQuantidade.Size = new System.Drawing.Size(275, 20);
             this.txtQuantidade.TabIndex = 2;
             // 
-            // dtpData
+            // dtpDataProducao
             // 
-            this.dtpData.Location = new System.Drawing.Point(229, 190);
-            this.dtpData.Name = "dtpData";
-            this.dtpData.Size = new System.Drawing.Size(275, 20);
-            this.dtpData.TabIndex = 3;
+            this.dtpDataProducao.Location = new System.Drawing.Point(229, 190);
+            this.dtpDataProducao.Name = "dtpDataProducao";
+            this.dtpDataProducao.Size = new System.Drawing.Size(275, 20);
+            this.dtpDataProducao.TabIndex = 3;
             // 
-            // dgvInsumosUsados
+            // dgvProducoes
             // 
-            this.dgvInsumosUsados.BackgroundColor = System.Drawing.SystemColors.ControlDark;
-            this.dgvInsumosUsados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInsumosUsados.Location = new System.Drawing.Point(12, 269);
-            this.dgvInsumosUsados.Name = "dgvInsumosUsados";
-            this.dgvInsumosUsados.Size = new System.Drawing.Size(649, 355);
-            this.dgvInsumosUsados.TabIndex = 4;
+            this.dgvProducoes.BackgroundColor = System.Drawing.SystemColors.ControlDark;
+            this.dgvProducoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducoes.Location = new System.Drawing.Point(12, 299);
+            this.dgvProducoes.Name = "dgvProducoes";
+            this.dgvProducoes.Size = new System.Drawing.Size(649, 325);
+            this.dgvProducoes.TabIndex = 4;
+            this.dgvProducoes.Visible = false;
             // 
             // label2
             // 
@@ -122,7 +124,7 @@
             this.btnConfirmar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnConfirmar.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.btnConfirmar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnConfirmar.Location = new System.Drawing.Point(198, 230);
+            this.btnConfirmar.Location = new System.Drawing.Point(183, 260);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(91, 33);
             this.btnConfirmar.TabIndex = 8;
@@ -135,7 +137,7 @@
             this.btnLimpar.BackColor = System.Drawing.SystemColors.GrayText;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnLimpar.Location = new System.Drawing.Point(379, 230);
+            this.btnLimpar.Location = new System.Drawing.Point(388, 260);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(91, 33);
             this.btnLimpar.TabIndex = 9;
@@ -143,26 +145,39 @@
             this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
+            // lblSemProducoes
+            // 
+            this.lblSemProducoes.AutoSize = true;
+            this.lblSemProducoes.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.lblSemProducoes.Font = new System.Drawing.Font("Segoe Print", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.lblSemProducoes.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblSemProducoes.Location = new System.Drawing.Point(21, 435);
+            this.lblSemProducoes.Name = "lblSemProducoes";
+            this.lblSemProducoes.Size = new System.Drawing.Size(627, 57);
+            this.lblSemProducoes.TabIndex = 10;
+            this.lblSemProducoes.Text = "Nenhuma produção registrada ainda.";
+            // 
             // FrmProducaoGelato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(673, 636);
+            this.Controls.Add(this.lblSemProducoes);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dgvInsumosUsados);
-            this.Controls.Add(this.dtpData);
+            this.Controls.Add(this.dgvProducoes);
+            this.Controls.Add(this.dtpDataProducao);
             this.Controls.Add(this.txtQuantidade);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbSabor);
             this.Name = "FrmProducaoGelato";
             this.Text = "FrmProducaoGelato";
             this.Load += new System.EventHandler(this.ProducaoGelato_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInsumosUsados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducoes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,12 +188,13 @@
         private System.Windows.Forms.ComboBox cmbSabor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtQuantidade;
-        private System.Windows.Forms.DateTimePicker dtpData;
-        private System.Windows.Forms.DataGridView dgvInsumosUsados;
+        private System.Windows.Forms.DateTimePicker dtpDataProducao;
+        private System.Windows.Forms.DataGridView dgvProducoes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Label lblSemProducoes;
     }
 }

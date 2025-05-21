@@ -22,74 +22,95 @@ namespace VitaGelata
             InitializeComponent();
         }
 
-        private void FrmProducaoGelato_Load(object sender, EventArgs e)
-        {
-            // Exemplo de sabores disponíveis — substitua por dados reais depois
-            cmbSabor.Items.Add("Chocolate");
-            cmbSabor.Items.Add("Morango");
-            cmbSabor.Items.Add("Baunilha");
-
-            cmbSabor.SelectedIndex = 0;
-            dtpData.Value = DateTime.Today;
-        }
+      
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (cmbSabor.SelectedItem == null || string.IsNullOrWhiteSpace(txtQuantidade.Text))
+            if (cmbSabor.SelectedItem == null)
             {
-                MessageBox.Show("Preencha todos os campos.");
+                MessageBox.Show("Selecione um sabor.");
                 return;
             }
 
-            if (!decimal.TryParse(txtQuantidade.Text, out decimal qtd))
+            if (!int.TryParse(txtQuantidade.Text, out int quantidade) || quantidade <= 0)
             {
-                MessageBox.Show("Quantidade inválida.");
+                MessageBox.Show("Digite uma quantidade válida.");
                 return;
             }
 
-            // Simular insumos consumidos (padrão fictício)
-            List<InsumoConsumido> insumos = new List<InsumoConsumido>()
-            {
-                new InsumoConsumido { Insumo = new Insumo { Nome = "Leite" }, QuantidadeUtilizada = qtd * 2 },
-                new InsumoConsumido { Insumo = new Insumo { Nome = "Açúcar" }, QuantidadeUtilizada = qtd * 0.5m },
-                new InsumoConsumido { Insumo = new Insumo { Nome = "Sabor Especial" }, QuantidadeUtilizada = qtd }
-            };
+            string nomeSabor = cmbSabor.SelectedItem.ToString();
+            var sabor = Repositorio.Sabores.FirstOrDefault(s => s.Nome == nomeSabor);
 
-            // Adiciona à lista de produções
-            Producao producao = new Producao()
+            if (sabor == null)
             {
-                Id = proximoId++,
-                SaborProduzido = new Sabor { Nome = cmbSabor.SelectedItem.ToString() },
-                Quantidade = qtd,
-                DataProducao = dtpData.Value,
-                InsumosUtilizados = insumos
-            };
+                MessageBox.Show("Sabor não encontrado.");
+                return;
+            }
 
-            listaProducoes.Add(producao);
-
-            // Exibir no grid
-            dgvInsumosUsados.DataSource = null;
-            dgvInsumosUsados.DataSource = insumos.ConvertAll(i => new
+            // Verificar se há insumos suficientes
+            foreach (var item in sabor.Receita)
             {
-                Nome = i.Insumo.Nome,
-                Quantidade = i.QuantidadeUtilizada
+                var insumo = Repositorio.Insumos.FirstOrDefault(i => i.Id == item.Insumo.Id);
+                decimal quantidadeNecessaria = item.QuantidadeUtilizada * quantidade;
+
+                if (insumo == null || insumo.QuantidadeEstoque < quantidadeNecessaria)
+                {
+                    MessageBox.Show($"Estoque insuficiente para o insumo: {item.Insumo.Nome}");
+                    return;
+                }
+            }
+
+            // Subtrair insumos
+            foreach (var item in sabor.Receita)
+            {
+                var insumo = Repositorio.Insumos.FirstOrDefault(i => i.Id == item.Insumo.Id);
+                insumo.QuantidadeEstoque -= item.QuantidadeUtilizada * quantidade;
+            }
+
+            MessageBox.Show("Produção registrada com sucesso!");
+            txtQuantidade.Clear();
+
+            Repositorio.Producoes.Add(new Producao
+            {
+                NomeSabor = sabor.Nome,
+                Quantidade = quantidade,
+                Data = dtpDataProducao.Value
             });
 
-            MessageBox.Show("Produção registrada com sucesso.");
+            AtualizarGridProducoes();
         }
-
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            cmbSabor.SelectedIndex = 0;
+            if (cmbSabor.Items.Count > 0)
+                cmbSabor.SelectedIndex = 0;
+
             txtQuantidade.Clear();
-            dtpData.Value = DateTime.Today;
-            dgvInsumosUsados.DataSource = null;
+            dtpDataProducao.Value = DateTime.Today;
         }
-    
-   
+        private void AtualizarGridProducoes()
+        {
+            dgvProducoes.DataSource = null;
+
+            // Declarando a variável corretamente
+            var producoes = Repositorio.Producoes.Select(p => new
+            {
+                p.NomeSabor,
+                p.Quantidade,
+                Data = p.Data.ToShortDateString()
+            }).ToList();
+
+            dgvProducoes.DataSource = producoes;
+
+            // Mostrar ou ocultar o label com base no conteúdo
+            lblSemProducoes.Visible = producoes.Count == 0;
+        }
+
+
+
 
         private void ProducaoGelato_Load(object sender, EventArgs e)
         {
+            // carregar os sabores no ComboBox
             cmbSabor.Items.Clear();
             foreach (var sabor in Repositorio.Sabores)
             {
@@ -97,6 +118,11 @@ namespace VitaGelata
             }
             if (cmbSabor.Items.Count > 0)
                 cmbSabor.SelectedIndex = 0;
+
+            dtpDataProducao.Value = DateTime.Today;
+
+            // carregar produções existentes
+            AtualizarGridProducoes();
         }
     }
 }
