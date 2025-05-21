@@ -83,9 +83,10 @@
             this.lblPreco.Location = new System.Drawing.Point(19, 216);
             this.lblPreco.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPreco.Name = "lblPreco";
-            this.lblPreco.Size = new System.Drawing.Size(52, 19);
+            this.lblPreco.Size = new System.Drawing.Size(114, 19);
             this.lblPreco.TabIndex = 2;
-            this.lblPreco.Text = "Preço";
+            this.lblPreco.Text = "Preço por Kilo";
+            this.lblPreco.Click += new System.EventHandler(this.lblPreco_Click);
             // 
             // txtNome
             // 
@@ -103,8 +104,6 @@
             this.txtIngredientes.Name = "txtIngredientes";
             this.txtIngredientes.Size = new System.Drawing.Size(493, 81);
             this.txtIngredientes.TabIndex = 4;
-            
-            
             // 
             // txtPreco
             // 
@@ -180,7 +179,6 @@
             this.label1.Size = new System.Drawing.Size(350, 57);
             this.label1.TabIndex = 12;
             this.label1.Text = "Cadastro de sabores";
-            
             // 
             // cmbInsumo
             // 

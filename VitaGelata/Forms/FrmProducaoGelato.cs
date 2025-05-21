@@ -124,5 +124,10 @@ namespace VitaGelata
             // carregar produções existentes
             AtualizarGridProducoes();
         }
+
+        private void dgvProducoes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

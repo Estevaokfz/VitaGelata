@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VitaGelata.Forms;
+
 
 namespace VitaGelata
 {
@@ -55,6 +57,12 @@ namespace VitaGelata
         private void FrmMenu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnConsultaGeral_Click(object sender, EventArgs e)
+        {
+            FrmConsultaGeral consulta = new FrmConsultaGeral();
+            consulta.ShowDialog(); // Abre a janela de forma modal (trava o menu até fechar)
         }
     }
 }

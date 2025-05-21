@@ -8,11 +8,9 @@ namespace VitaGelata.Models
 {
     public class Venda
     {
-        public int Id { get; set; }
-        public Sabor ProdutoVendido { get; set; }
+        public string NomeSabor { get; set; }
         public int Quantidade { get; set; }
-        public string FormaPagamento { get; set; }
-        public decimal ValorTotal { get; set; }
-        public DateTime DataHora { get; set; }
+        public DateTime Data { get; set; }
+        public decimal Valor { get; set; }
     }
 }

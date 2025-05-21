@@ -209,6 +209,10 @@ namespace VitaGelata
             }).ToList();
         }
 
+        private void lblPreco_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     }
 

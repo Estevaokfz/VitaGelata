@@ -79,11 +79,12 @@
             // 
             this.dgvProducoes.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dgvProducoes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducoes.GridColor = System.Drawing.SystemColors.GrayText;
             this.dgvProducoes.Location = new System.Drawing.Point(12, 299);
             this.dgvProducoes.Name = "dgvProducoes";
             this.dgvProducoes.Size = new System.Drawing.Size(649, 325);
             this.dgvProducoes.TabIndex = 4;
-            this.dgvProducoes.Visible = false;
+            this.dgvProducoes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducoes_CellContentClick);
             // 
             // label2
             // 
@@ -156,6 +157,7 @@
             this.lblSemProducoes.Size = new System.Drawing.Size(627, 57);
             this.lblSemProducoes.TabIndex = 10;
             this.lblSemProducoes.Text = "Nenhuma produção registrada ainda.";
+            this.lblSemProducoes.Visible = false;
             // 
             // FrmProducaoGelato
             // 
