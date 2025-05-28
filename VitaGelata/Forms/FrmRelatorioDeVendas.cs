@@ -11,7 +11,6 @@ using VitaGelata.Utils;
 using ClosedXML.Excel;
 using System.IO;
 using DocumentFormat.OpenXml.Office2010.PowerPoint;
-
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
