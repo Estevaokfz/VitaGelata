@@ -45,7 +45,7 @@ namespace VitaGelata
 
         private void btnRelatorios_Click(object sender, EventArgs e)
         {
-            FrmRelatorios frm = new FrmRelatorios();
+            FrmRelatorioDeVendas frm = new FrmRelatorioDeVendas();
             frm.ShowDialog();
         }
 
