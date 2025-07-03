@@ -30,13 +30,11 @@ namespace VitaGelata
             FrmCadastroInsumos frm = new FrmCadastroInsumos();
             frm.ShowDialog();
         }
-
         private void btnProducao_Click(object sender, EventArgs e)
         {
              FrmProducaoGelato frm = new FrmProducaoGelato();
              frm.ShowDialog();
         }
-
         private void btnVendas_Click(object sender, EventArgs e)
         {
            FrmRegistroVendas frm = new FrmRegistroVendas();
