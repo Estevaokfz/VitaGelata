@@ -177,7 +177,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbSabor);
             this.Name = "FrmProducaoGelato";
-            this.Text = "FrmProducaoGelato";
+            this.Text = "Producao Gelato";
             this.Load += new System.EventHandler(this.ProducaoGelato_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducoes)).EndInit();
             this.ResumeLayout(false);

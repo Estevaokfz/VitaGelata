@@ -147,6 +147,7 @@
             this.btnRegistrar.Text = "Confirmar";
             this.btnRegistrar.UseMnemonic = false;
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnLimpar
             // 
@@ -179,7 +180,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmRegistroVendas";
-            this.Text = "FrmRegistroVendas";
+            this.Text = "Registro Vendas";
             this.Load += new System.EventHandler(this.FrmRegistroVendas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVendas)).EndInit();
             this.ResumeLayout(false);

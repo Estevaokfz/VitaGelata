@@ -275,7 +275,7 @@
             this.Font = new System.Drawing.Font("Segoe Print", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmCadastroSabores";
-            this.Text = "CadastroSabores";
+            this.Text = "Cadastro Sabores";
             this.Load += new System.EventHandler(this.FrmCadastroSabores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceita)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSabores)).EndInit();

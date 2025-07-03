@@ -236,7 +236,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmCadastroInsumos";
-            this.Text = "FrmCadastroInsumos";
+            this.Text = "Cadastro Insumos";
             this.Load += new System.EventHandler(this.FrmCadastroInsumos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInsumos)).EndInit();
             this.ResumeLayout(false);

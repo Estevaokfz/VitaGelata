@@ -134,51 +134,61 @@ namespace VitaGelata
 
             if (salvar.ShowDialog() == DialogResult.OK)
             {
-                Document doc = new Document(PageSize.A4.Rotate());
+                Document doc = new Document(PageSize.A4.Rotate(), 10, 10, 20, 20);
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(salvar.FileName, FileMode.Create));
 
                 doc.Open();
 
-                // Título
-                var titulo = new Paragraph("Relatório de Vendas")
-                {
-                    Alignment = Element.ALIGN_CENTER
-                };
-                titulo.Font.Size = 18;
-                titulo.Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18);
+                // 🎯 Título
+                var titulo = new Paragraph("RELATÓRIO DE VENDAS", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18));
+                titulo.Alignment = Element.ALIGN_CENTER;
                 doc.Add(titulo);
 
                 doc.Add(new Paragraph("\n"));
 
-                // Tabela
+                // 🎯 Filtros aplicados
+                string filtros = $"Período: {dtpDataInicial.Value.ToShortDateString()} a {dtpDataFinal.Value.ToShortDateString()}";
+                if (cmbSabor.SelectedItem != null && cmbSabor.SelectedItem.ToString() != "Todos")
+                    filtros += $" | Sabor: {cmbSabor.SelectedItem}";
+
+                var filtroParagrafo = new Paragraph(filtros, FontFactory.GetFont(FontFactory.HELVETICA, 12));
+                filtroParagrafo.Alignment = Element.ALIGN_LEFT;
+                doc.Add(filtroParagrafo);
+
+                doc.Add(new Paragraph("\n"));
+
+                // 🎯 Tabela
                 PdfPTable table = new PdfPTable(dgvRelatorio.Columns.Count);
                 table.WidthPercentage = 100;
 
-                // Cabeçalhos
+                // Cabeçalho da tabela
                 foreach (DataGridViewColumn column in dgvRelatorio.Columns)
                 {
-                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
-                    cell.BackgroundColor = new BaseColor(235, 235, 235);
+                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12)));
+                    cell.BackgroundColor = new BaseColor(230, 230, 230);
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
                     table.AddCell(cell);
                 }
 
-                // Dados
+                // Dados da tabela
                 foreach (DataGridViewRow row in dgvRelatorio.Rows)
                 {
                     if (!row.IsNewRow)
                     {
                         foreach (DataGridViewCell cell in row.Cells)
                         {
-                            table.AddCell(cell.Value?.ToString() ?? "");
+                            table.AddCell(new Phrase(cell.Value?.ToString() ?? ""));
                         }
                     }
                 }
 
                 doc.Add(table);
 
-                // Totalizador
+                // 🎯 Totalizador
                 doc.Add(new Paragraph("\n"));
-                doc.Add(new Paragraph($"Total Geral: {txtTotal.Text}"));
+                var totalizador = new Paragraph($"Total Geral: {txtTotal.Text}", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14));
+                totalizador.Alignment = Element.ALIGN_RIGHT;
+                doc.Add(totalizador);
 
                 doc.Close();
                 writer.Close();
@@ -186,6 +196,7 @@ namespace VitaGelata
                 MessageBox.Show("Relatório PDF exportado com sucesso!", "Exportação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
 
         private void dtpDataInicial_ValueChanged(object sender, EventArgs e)

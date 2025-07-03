@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenu));
             this.btnSabores = new System.Windows.Forms.Button();
             this.btnInsumos = new System.Windows.Forms.Button();
             this.btnProducao = new System.Windows.Forms.Button();
@@ -133,7 +134,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(750, 635);
+            this.ClientSize = new System.Drawing.Size(739, 635);
             this.Controls.Add(this.btnConsultaGeral);
             this.Controls.Add(this.btnSair);
             this.Controls.Add(this.btnRelatorios);
@@ -141,6 +142,7 @@
             this.Controls.Add(this.btnProducao);
             this.Controls.Add(this.btnInsumos);
             this.Controls.Add(this.btnSabores);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMenu";
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.FrmMenu_Load);

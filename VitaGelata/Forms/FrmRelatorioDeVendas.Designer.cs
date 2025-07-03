@@ -179,7 +179,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmRelatorioDeVendas";
-            this.Text = "FrmRelatorios";
+            this.Text = "Relatorios";
             this.Load += new System.EventHandler(this.FrmRelatorioDeVendas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRelatorio)).EndInit();
             this.ResumeLayout(false);
